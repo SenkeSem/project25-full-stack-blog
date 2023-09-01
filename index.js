@@ -19,11 +19,11 @@ app.post('/auth/login', loginValidation,UserController.login);
 app.post('/auth/reqister', reqisterValidation, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
 
-// app.get('/posts', PostController.getAll);
-// app.get('/posts/:id', PostController.getOne);
-app.post('/posts', postCreateValidation, PostController.create);
-// app.delete('/posts', PostController.remove);
-// app.patch('/posts', PostController.update);
+app.get('/posts', PostController.getAll);
+app.get('/posts/:id', PostController.getOne);
+app.post('/posts', checkAuth, postCreateValidation, PostController.create);
+app.delete('/posts/:id', checkAuth, PostController.remove);
+app.patch('/posts/:id',checkAuth, PostController.update);
 
 app.listen(4444, (err) => {
   if (err) {
