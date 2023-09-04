@@ -45,8 +45,11 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
   });
 });
 
+app.get('/tags', PostController.getLastTags);
+
 // CRUD функционал для статей.
 app.get('/posts', PostController.getAll);
+app.get('/posts/tags', PostController.getLastTags);
 app.get('/posts/:id', PostController.getOne);
 
 // Удалять, создавать и редактировать --> Могут только авторизованные пользователи.
