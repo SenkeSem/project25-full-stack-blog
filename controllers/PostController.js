@@ -41,7 +41,7 @@ export const getOne = async (req, res) => {
       },
       {
         returnDocument: 'after'
-      })
+      }).populate('user')
       .then((doc) => {
         if (!doc) {
           return res.status(404).json(
@@ -49,17 +49,15 @@ export const getOne = async (req, res) => {
               message: 'Статья не найдена',
             });
         };
-
         res.json(doc)
       }).catch((err) => {
         if (err) {
           return res.status(403).json(
             {
-              message: 'Не удалось получить пост',
+              message: 'Не удалось получить статью',
             });
         };
       })
-
   } catch (error) {
     console.log(error);
     res.status(500).json({
